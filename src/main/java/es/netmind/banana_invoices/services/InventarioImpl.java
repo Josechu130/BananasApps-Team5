@@ -1,15 +1,18 @@
 package es.netmind.banana_invoices.services;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import es.netmind.banana_invoices.models.Propietario;
 import es.netmind.banana_invoices.persistence.IPropietarioRepo;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 public class InventarioImpl implements IInventario {
     @Getter
     @Setter
+    @Autowired
     private IPropietarioRepo propietariosRepo;
 
     @Override
@@ -21,4 +24,6 @@ public class InventarioImpl implements IInventario {
     public Propietario save(Propietario prop) {
         return propietariosRepo.save(prop);
     }
+    
+    
 }
