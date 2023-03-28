@@ -1,21 +1,18 @@
 package es.netmind.banana_invoices.persistence;
 
-import java.util.List;
+import es.netmind.banana_invoices.models.Propietario;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
-
-import es.netmind.banana_invoices.models.Propietario;
+import java.util.List;
 
 public class JPAPropietarioRepo implements IPropietarioRepo {
-    
-	@PersistenceContext
+    @PersistenceContext
     private EntityManager em;
 
     @Override
-    @Transactional
     public List<Propietario> findAll() {
         Query query = em.createQuery("SELECT e FROM Propietario e");
         return (List<Propietario>) query.getResultList();
@@ -26,5 +23,11 @@ public class JPAPropietarioRepo implements IPropietarioRepo {
     public Propietario save(Propietario prop) {
         em.persist(prop);
         return prop;
+    }
+
+    @Override
+    @Transactional
+    public Propietario findById(Long id) {
+        return em.find(Propietario.class, id);
     }
 }

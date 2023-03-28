@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface IReciboRepo {
     public List<Recibo> findAll();
-    public Recibo save(Recibo entity);
 
+    public Recibo save(Recibo recibo);
+
+    Recibo findById(Long id);
 }
